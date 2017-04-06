@@ -1,0 +1,1 @@
+// SpotifyActivity = new Mongo.Collection('SpotifyActivity');

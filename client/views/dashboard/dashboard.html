@@ -1,0 +1,92 @@
+<template name="dashboard">
+  <!-- SEARCH BAR -->
+  <div class="container">
+      <div class="row no-gutter">
+          <div class="col-xs-6">
+              <form class="spotify-search">
+                  <div class="input-group">
+                      <input type="text" name="text" class="form-control" placeholder="emobunny@gmail.com">
+                  </div>
+              </form>
+          </div>
+
+          <div class="col-xs-6 text-right">
+               {{> upload}}
+          </div>
+      </div>
+
+      <!-- USER INFO -->
+      <div class="row">
+          <div class="col-sm-6">
+              <h3>Email: {{email}}</h3>
+          </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="row">
+          <div class="col-sm-3">
+                  <ul class="list-unstyled">
+                  <h1>Saved Tracks</h1>
+                      {{#each savedTracks}}
+                          <li>
+                            {{#if hasMatch}}
+                                <span><strong>{{this.artist_name}}: </strong>{{this.album_name}}</span>
+                            {{else}}
+                                <span style="color: lightgray"><strong>{{this.artist_name}}: </strong>{{this.album_name}}</span>
+                            {{/if}}
+                          </li>
+                      {{/each}}
+                  </ul>
+          </div>
+
+          <div class="col-sm-6">
+                  <ul class="list-unstyled">
+                  <h1>Inventory Matches</h1>
+                      {{#each inventoryMatches}}
+
+                          <!-- if discogs match -->
+                          {{#if discogsMatch}}
+                          <li>
+                                <a href={{discogsUrl}} target="_blank">
+                                  <span><strong>{{this.artist}}: </strong>{{this.album}}</span>
+                                </a>
+                                <i class="fa fa-usd" aria-hidden="true"></i> {{this.cost}}
+                                <img src="img/discogs-logo.png">
+                          </li>
+                          {{else}}
+                            <!-- if no discogs -->
+                            <li>
+                                <span><strong>{{this.artist}}: </strong>{{this.album}}</span>
+                                | <strong>Distributor: </strong>{{this.distributor}}
+                                | <strong>QTY: </strong>{{this.quantity}}
+                                | <strong>Cost: </strong> {{this.cost}}
+                            </li>
+                          {{/if}}
+                      {{/each}}
+                  </ul>
+          </div>
+
+          <div clsas="col-sm-3">
+                  <ul class="list-unstyled">
+                  <h1>Want List</h1>
+                      {{#each discogsWantlist}}
+
+
+                          <li>
+                              {{#if hasMatch}}
+                                <a href="{{discogsUrl}}" target="_blank">
+                                  <span><strong>{{this.artist_name}}: </strong>{{this.album_name}}</span>
+                                </a>
+                              {{else}}
+                                  <span style="color: lightgray"><strong>{{this.artist_name}}: </strong>{{this.album_name}}</span>
+                              {{/if}}
+                          </li>
+                      {{/each}}
+                  </ul>
+          </div>
+      </div>
+  </div>
+
+</template>
+
+

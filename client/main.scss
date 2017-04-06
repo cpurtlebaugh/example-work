@@ -1,0 +1,11 @@
+@import "{}/node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+// used across templates
+body {
+  font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
